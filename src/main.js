@@ -13,9 +13,9 @@ import fetch from 'isomorphic-fetch'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import Main from './components/Main.vue'
-import Table from './components/nav1/Table.vue'
-import Form from './components/nav1/Form.vue'
-import Page3 from './components/nav1/Page3.vue'
+import comic_list from './components/comic/comic_list.vue'
+import comic_form from './components/comic/comic_form.vue'
+import Page3 from './components/comic/Page3.vue'
 import Page4 from './components/nav2/Page4.vue'
 import Page5 from './components/nav2/Page5.vue'
 import Page6 from './components/nav3/Page6.vue'
@@ -33,14 +33,13 @@ const routes = [
   },
   //{ path: '/main', component: Main },
   {
-    path: '/',
+    path: '/comic',
     component: Home,
-    name: '导航一',
+    name: 'comic',
     iconCls: 'el-icon-message',//图标样式class
     children: [
-      //{ path: '/main', component: Main },
-      { path: '/table', component: Table, name: 'Table' },
-      { path: '/form', component: Form, name: 'Form' },
+      { path: '/comic_list', component: comic_list, name: '漫画列表' },
+      { path: '/comic_form', component: comic_form, name: '漫画上传' },
       { path: '/page3', component: Page3, name: '页面3' },
     ]
   },

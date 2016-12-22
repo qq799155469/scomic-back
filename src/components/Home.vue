@@ -69,8 +69,8 @@
   export default {
     data() {
       return {
-		  currentPathName:'Table',
-		  currentPathNameParent:'导航一',
+		  currentPathName:'comic_list',
+		  currentPathNameParent:'comic',
         form: {
           name: '',
           region: '',

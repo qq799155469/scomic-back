@@ -59,7 +59,7 @@
                     return
                   }else if(json.code === 200){
                     sessionStorage.setItem('token',json.data.token)  
-                    _this.$router.replace('/table');
+                    _this.$router.replace('/comic_list')
                   }
                 })
               }
