@@ -36,6 +36,25 @@
         checked: true
       };
     },
+    mounted() {
+      var y = 1
+      function runAsync() {
+        var p = new Promise(function(resolve, reject){
+          setTimeout(function(){
+            y ++
+            console.log('over',y)
+            resolve('resolve')
+          },1000)
+        })
+
+        return p
+      }
+
+      runAsync().then(function(data){
+        console.log(y,data)
+      })
+
+    },
     methods: {
       handleReset2() {
         this.$refs.ruleForm2.resetFields();

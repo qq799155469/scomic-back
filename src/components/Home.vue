@@ -89,6 +89,9 @@
 			this.currentPathNameParent=to.matched[0].name;
 		}
 	},
+	mounted() {
+		
+	},
     methods: {
       onSubmit() {
         console.log('submit!');
