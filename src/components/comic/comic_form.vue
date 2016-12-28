@@ -14,19 +14,19 @@
 			</el-select>
 		</el-form-item>
 		<el-form-item label="年代">
-			<el-col :span="11">
-				<el-date-picker type="date" placeholder="选择日期" v-model="year" style="width: 100%;"></el-date-picker>
-			</el-col>
-			<el-col class="line" :span="2">-</el-col>
-			<el-col :span="11">
-				<el-time-picker type="fixed-time" placeholder="选择时间" v-model="date2" style="width: 100%;"></el-time-picker>
-			</el-col>
+			<div class="block">
+			  <span class="demonstration">年</span>
+			  <el-date-picker
+			    v-model="year"
+			    align="right"
+			    type="year"
+			    placeholder="选择年">
+			  </el-date-picker>
+			</div>
 		</el-form-item>
 		<el-form-item label="初始评分">
 			
-			<el-rate
-			  v-model="score"
-			  show-text>
+			<el-rate v-model="score" text-template="{score}" :max="10">
 			</el-rate>
 		</el-form-item>
 		<el-form-item label="作者">
@@ -42,6 +42,7 @@
 				<el-checkbox label="四格" name="type"></el-checkbox>
 				<el-checkbox label="后宫" name="type"></el-checkbox>
 				<el-checkbox label="百合" name="type"></el-checkbox>
+				<el-checkbox label="热血" name="type"></el-checkbox>
 				<el-checkbox label="腐" name="type"></el-checkbox>
 			</el-checkbox-group>
 		</el-form-item>
@@ -54,14 +55,14 @@
 		<el-form-item label="漫画介绍">
 			<el-input type="textarea" v-model="des"></el-input>
 		</el-form-item>
+		<form enctype="multipart/form-data" method="post" name="imgForm">
+	      	<p><span style="color: #5e6d82;font-size: 14px;padding-right: 8px;padding-left: 40px;">封面</span> <input type="file" name="file" id="imgObj" @change="changeFile" /></p>  
+		</form>
 		<el-form-item>
 			<el-button type="primary" @click="upload">立即创建</el-button>
 			<el-button @click.native.prevent>取消</el-button>
 		</el-form-item>
-		<form enctype="multipart/form-data" method="post" name="imgForm">
-	      	<p>上传文件： <input type="file" name="file" id="imgObj" @change="changeFile" /></p>  
-	      	<input type="button" value="上传" />
-		</form>
+		
 	</el-form>
 	
 </template>
@@ -73,8 +74,7 @@
           title: '',
           place: '',
           year: '',
-          date2: '',
-          score: 5,
+          score: 10,
           author: '',
           type: [],
           dimension: '',
@@ -92,16 +92,19 @@
       handlePreview(file) {
         console.log(file);
       },
+      success() {
+      	this.$message('上传成功!')
+      },
       changeFile() {
       	let self = this
 		let oData = new FormData()
 		let img = document.getElementById('imgObj').files[0]
       	
-      	oData.append('type','comic')
+      	oData.append('type','user')
       	oData.append('category','face')
       	oData.append('img',img)
-      	
-      	fetch('http://211.149.195.231:3000/api/form/comic',{
+
+      	fetch('http://211.149.195.231:3000/api/image/comic/face',{
       		method: 'post',
       		mode: 'cors',
       		headers: {},
@@ -124,7 +127,22 @@
       		},
       		body: "title=" + this.title + '&place=' + this.place + '&year=' + this.year + '&score=' + this.score + '&type=' + this.type + '&des=' + this.des + '&author=' + this.author + '&image=' + this.image
       	}).then((res) => {
+      		if(res.ok){
+      			res.json().then((json) => {
+      				if(json.code === 200){
+      					this.title = '',
+      					this.place = '',
+      					this.year = '',
+      					this.score = 10,
+      					this.author = '',
+      					this.type = [],
+      					this.des = '',
+      					this.image = null
 
+      					this.success()
+      				}
+      			})
+      		}
       	})
       }
     }

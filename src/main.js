@@ -15,9 +15,8 @@ import Home from './components/Home.vue'
 import Main from './components/Main.vue'
 import comic_list from './components/comic/comic_list.vue'
 import comic_form from './components/comic/comic_form.vue'
-import Page3 from './components/comic/Page3.vue'
-import Page4 from './components/nav2/Page4.vue'
-import Page5 from './components/nav2/Page5.vue'
+import story_list from './components/story/story_list.vue'
+import story_form from './components/story/story_form.vue'
 import Page6 from './components/nav3/Page6.vue'
 import echarts from './components/charts/echarts.vue'
 
@@ -39,18 +38,17 @@ const routes = [
     iconCls: 'el-icon-message',//图标样式class
     children: [
       { path: '/comic_list', component: comic_list, name: '漫画列表' },
-      { path: '/comic_form', component: comic_form, name: '漫画上传' },
-      { path: '/page3', component: Page3, name: '页面3' },
+      { path: '/comic_form', component: comic_form, name: '漫画上传' }
     ]
   },
   {
-    path: '/',
+    path: '/story',
     component: Home,
-    name: '导航二',
+    name: 'story',
     iconCls: 'fa fa-id-card-o',
     children: [
-      { path: '/page4', component: Page4, name: '页面4' },
-      { path: '/page5', component: Page5, name: '页面5' }
+      { path: '/story_form', component: story_form, name: '小故事上传' },
+      { path: '/story_list', component: story_list, name: '小故事列表' }
     ]
   },
   {
