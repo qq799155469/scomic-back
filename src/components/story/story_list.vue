@@ -16,28 +16,39 @@
     </el-col>
 
     <!--列表-->
-    <template>
-      <el-table :data="tableData" highlight-current-row v-loading="listLoading" style="width: 100%;">
-        <el-table-column type="index" width="50">
-        </el-table-column>
-        <el-table-column prop="name" label="姓名" width="180" sortable>
-        </el-table-column>
-        <el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" sortable>
-        </el-table-column>
-        <el-table-column prop="age" label="年龄" width="100" sortable>
-        </el-table-column>
-        <el-table-column prop="birth" label="生日" width="180" sortable>
-        </el-table-column>
-        <el-table-column prop="addr" label="地址" sortable>
-        </el-table-column>
-        <el-table-column inline-template :context="_self" label="操作" width="100">
-          <span>
-          <el-button type="text" size="small" @click="handleEdit(row)">编辑</el-button>
-          <el-button type="text" size="small" @click="handleDel(row)">删除</el-button>
-        </span>
-        </el-table-column>
-      </el-table>
-    </template>
+    <el-table
+      border
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="id"
+        label="序号">
+      </el-table-column>
+      <el-table-column
+        prop="title"
+        label="名字">
+      </el-table-column>
+      <el-table-column
+        prop="views_count"
+        label="点击量">
+      </el-table-column>
+      <el-table-column
+        prop="type"
+        label="类型">
+      </el-table-column>
+      <el-table-column
+        prop="author"
+        label="作者">
+      </el-table-column>
+      <el-table-column
+        prop="des"
+        label="简介">
+      </el-table-column>
+      <el-table-column
+        prop="degree"
+        label="惊喜度">
+      </el-table-column>
+    </el-table>
 
     <!--分页-->
     <el-col :span="24" class="toolbar" style="padding-bottom:10px;">
@@ -114,65 +125,31 @@
             { required: true, message: '请输入姓名', trigger: 'blur' }
           ]
         },
-        tableData: [{
-          id:1000,
-          name: 'lanqy1',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1001,
-          name: 'lanqy2',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1002,
-          name: 'lanqy3',
-          sex: 0,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1003,
-          name: 'lanqy4',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1004,
-          name: 'lanqy5',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1005,
-          name: 'lanqy6',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1006,
-          name: 'lanqy7',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }, {
-          id:1007,
-          name: 'lanqy8',
-          sex: 1,
-          age: 20,
-          birth:'1996-03-02',
-          addr:'广东广州天河体育中心'
-        }],
+        tableData: [
+
+        ],
         listLoading:false
         }
+    },
+    mounted() {
+      let self = this
+      fetch(self.$store.state.api_addr + 'story/list',{
+        method: 'post',
+        mode: 'cors',
+        headers: {},
+        body: "limit=10&start=0"
+      }).then((res) => {
+        if(res.ok){
+          res.json().then((json) => {
+            if(json.code === 200){
+              
+              for(let i = 0;i < json.data.length; i ++){
+                self.tableData.push(json.data[i])
+              }
+            }
+          })
+        }
+      })
     },
     methods: {
       //性别显示转换

@@ -93,30 +93,30 @@
 		
 	},
     methods: {
-      onSubmit() {
-        console.log('submit!');
-      },
-			handleopen(){
-				//console.log('handleopen');
-			},
-			handleclose(){
-				//console.log('handleclose');
-			},
-            handleselect:function(a,b){
-            },
-			//退出登录
-			logout:function(){
-				var _this=this;
-				this.$confirm('确认退出吗?', '提示', {
-					//type: 'warning'
-				}).then(() => {
-					_this.$router.replace('/login');
-				}).catch(() => {
-							
-				});
+	    onSubmit() {
+	      	console.log('submit!');
+	    },
+		handleopen(){
+			//console.log('handleopen');
+		},
+		handleclose(){
+			//console.log('handleclose');
+		},
+	    handleselect:function(a,b){
+	    },
+		//退出登录
+		logout:function(){
+			var _this=this;
+			this.$confirm('确认退出吗?', '提示', {
+				//type: 'warning'
+			}).then(() => {
+				_this.$router.replace('/login');
+			}).catch(() => {
+						
+			});
 
-				
-			}
+			
+		}
     }
   }
 </script>

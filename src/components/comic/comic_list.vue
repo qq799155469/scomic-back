@@ -16,6 +16,7 @@
 		</el-col>
 
 		<el-table
+		  border
 	      :data="tableData"
 	      style="width: 100%">
 	      <el-table-column
@@ -33,10 +34,6 @@
 	      <el-table-column
 	        prop="views_count"
 	        label="点击量">
-	      </el-table-column>
-	      <el-table-column
-	        prop="des"
-	        label="简介">
 	      </el-table-column>
 	      <el-table-column
 	        prop="type"
@@ -158,7 +155,6 @@
     					for(let i = 0;i < json.data.length; i ++){
     						self.tableData.push(json.data[i])
     					}
-    					console.log(self.tableData)
     				}
     			})
     		}

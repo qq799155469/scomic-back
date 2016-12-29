@@ -47,8 +47,8 @@ const routes = [
     name: 'story',
     iconCls: 'fa fa-id-card-o',
     children: [
-      { path: '/story_form', component: story_form, name: '小故事上传' },
-      { path: '/story_list', component: story_list, name: '小故事列表' }
+      { path: '/story_form', component: story_form, name: '微文上传' },
+      { path: '/story_list', component: story_list, name: '微文列表' }
     ]
   },
   {

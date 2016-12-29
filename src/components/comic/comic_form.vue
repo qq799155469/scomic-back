@@ -100,7 +100,7 @@
 		let oData = new FormData()
 		let img = document.getElementById('imgObj').files[0]
       	
-      	oData.append('type','user')
+      	oData.append('type','comic')
       	oData.append('category','face')
       	oData.append('img',img)
 

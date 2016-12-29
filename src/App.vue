@@ -13,7 +13,11 @@ export default {
   components: {
   },
   created:function(){
-	  this.$router.replace('/login')
+  	if(sessionStorage.getItem('token')){
+  		this.$router.replace('/comic')
+  	}else{
+  		this.$router.replace('/login')	
+  	}
   }
 }
 </script>
