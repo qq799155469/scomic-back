@@ -8,7 +8,7 @@ Vue.use(Vuex)
 // 应用初始状态
 const state = {
     count: 10,
-    api_addr: 'http://211.149.195.231:3000/api/'
+    api_addr: 'http://scomic.cn/api/'
 }
 
 // 定义所需的 mutations

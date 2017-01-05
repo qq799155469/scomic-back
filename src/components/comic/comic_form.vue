@@ -15,7 +15,6 @@
 		</el-form-item>
 		<el-form-item label="年代">
 			<div class="block">
-			  <span class="demonstration">年</span>
 			  <el-date-picker
 			    v-model="year"
 			    align="right"
@@ -32,6 +31,14 @@
 		<el-form-item label="作者">
 			<el-input v-model="author"></el-input>
 		</el-form-item>
+		<el-form-item label="作者">
+			<el-input placeholder="请输入漫画地址" v-model="link_comic">
+		    	<template slot="prepend">http://</template>
+		  	</el-input>
+		  	<el-input placeholder="请输入TV地址" v-model="link_tv">
+		    	<template slot="prepend">http://</template>
+		  	</el-input>
+		</el-form-item>
 		<el-form-item label="漫画类型">
 			<el-checkbox-group v-model="type">
 				<el-checkbox label="悬疑" name="type"></el-checkbox>
@@ -43,14 +50,17 @@
 				<el-checkbox label="后宫" name="type"></el-checkbox>
 				<el-checkbox label="百合" name="type"></el-checkbox>
 				<el-checkbox label="热血" name="type"></el-checkbox>
+				<el-checkbox label="怪异" name="type"></el-checkbox>
+				<el-checkbox label="科幻" name="type"></el-checkbox>
+				<el-checkbox label="治愈" name="type"></el-checkbox>
+				<el-checkbox label="竞技" name="type"></el-checkbox>
+				<el-checkbox label="灾难" name="type"></el-checkbox>
+				<el-checkbox label="校园" name="type"></el-checkbox>
+				<el-checkbox label="少年" name="type"></el-checkbox>
+				<el-checkbox label="少女" name="type"></el-checkbox>
+				<el-checkbox label="魔法" name="type"></el-checkbox>
 				<el-checkbox label="腐" name="type"></el-checkbox>
 			</el-checkbox-group>
-		</el-form-item>
-		<el-form-item label="次元">
-			<el-radio-group v-model="dimension">
-				<el-radio label="2次元"></el-radio>
-				<el-radio label="3次元"></el-radio>
-			</el-radio-group>
 		</el-form-item>
 		<el-form-item label="漫画介绍">
 			<el-input type="textarea" v-model="des"></el-input>
@@ -77,9 +87,10 @@
           score: 10,
           author: '',
           type: [],
-          dimension: '',
           des: '',
-          image: ''
+          image: '',
+          link_comic: '',
+          link_tv: ''
       }
     },
     methods: {
@@ -104,7 +115,7 @@
       	oData.append('category','face')
       	oData.append('img',img)
 
-      	fetch('http://211.149.195.231:3000/api/image/comic/face',{
+      	fetch(self.$store.state.api_addr + 'image/comic/face',{
       		method: 'post',
       		mode: 'cors',
       		headers: {},
@@ -119,13 +130,13 @@
 		
       },
       upload() {
-      	fetch('http://211.149.195.231:3000/api/data/comic',{
+      	fetch(this.$store.state.api_addr + 'data/comic',{
       		method: 'post',
       		mode: 'cors',
       		headers: {
       			"Content-Type": "application/x-www-form-urlencoded"
       		},
-      		body: "title=" + this.title + '&place=' + this.place + '&year=' + this.year + '&score=' + this.score + '&type=' + this.type + '&des=' + this.des + '&author=' + this.author + '&image=' + this.image
+      		body: "title=" + this.title + '&place=' + this.place + '&year=' + this.year + '&score=' + this.score + '&type=' + this.type + '&des=' + this.des + '&author=' + this.author + '&image=' + this.image + '&link_comic=' + this.link_comic + '&link_tv=' + this.link_tv
       	}).then((res) => {
       		if(res.ok){
       			res.json().then((json) => {
@@ -138,6 +149,8 @@
       					this.type = [],
       					this.des = '',
       					this.image = null
+      					this.link_comic = ''
+      					this.link_tv = ''
 
       					this.success()
       				}

@@ -2,7 +2,7 @@
 	<el-row class="panel">
 		<el-col :span="24" class="panel-top">
 			<el-col :span="20" style="font-size:26px;">
-				<img src="../assets/logo4.png" class="logo"> <span>AD<i style="color:#20a0ff">MIN</i></span>
+				<img src="../assets/logo4.png" class="logo">SCOMIC. <span>AD<i style="color:#20a0ff">MIN</i></span>
 			</el-col>
 			<el-col :span="4">
 				<el-tooltip class="item tip-logout" effect="dark" content="退出" placement="bottom" style="padding:0px;">
@@ -14,7 +14,7 @@
 		<el-col :span="24" class="panel-center">
 			<!--<el-col :span="4">-->
 			<aside style="width:230px;">
-				<h5 class="admin"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i>欢迎系统管理员：测试</h5>
+				<h5 class="admin"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i>欢迎系统管理员</h5>
 				<!--<el-menu style="border-top: 1px solid #475669;" default-active="/table" class="el-menu-vertical-demo" @open="handleopen"
 					@close="handleclose" @select="handleselect" theme="dark" unique-opened router>
 					<el-submenu index="1">

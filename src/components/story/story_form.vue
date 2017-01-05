@@ -4,7 +4,6 @@
 			<el-input v-model="title"></el-input>
 		</el-form-item>
 		<el-form-item label="惊喜指数">
-			
 			<el-rate v-model="degree" text-template="{score}" :max="10">
 			</el-rate>
 		</el-form-item>
@@ -32,6 +31,14 @@
 					<button class="skeditor-bold" onclick="document.execCommand('Bold')">B</button>
 					<button class="skeditor-italic" onclick="document.execCommand('Italic')">I</button>
 					<button class="skeditor-underline" onclick="document.execCommand('Underline')"><u>U</u></button>
+					<select class="skeditor-size" onchange="document.execCommand('FontSize',false,this.value)">
+						<option disabled="true" selected="true">Font-size</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
 					<button class="skeditor-back" onclick="document.execCommand('BackColor',false,'green')">color</button>
 					<button class="skeditor-show" @click="skShow">SHOW</button>
 				</div>
@@ -108,8 +115,8 @@
       					this.des = '',
       					this.content = '',
       					this.author = '',
-      					this.type = '',
-      					this.degree = '',
+      					this.type = [],
+      					this.degree = 0,
       					document.getElementsByClassName('skeditor-input')[0].innerHTML = ''
 
       					this.success()
@@ -165,7 +172,7 @@
 	.skeditor-options{
 		padding-bottom: 5px;
 	}
-	.skeditor-bold,.skeditor-italic,.skeditor-underline,.skeditor-back,.skeditor-show{
+	.skeditor-bold,.skeditor-italic,.skeditor-underline,.skeditor-size,.skeditor-back,.skeditor-show{
 		width: 50px;
 		height: 30px;
 		background-color: #fff;
@@ -180,6 +187,9 @@
 	}
 	.skeditor-italic{
 		font-style: italic;
+	}
+	.skeditor-size{
+		width: 80px;
 	}
 	.skeditor-show{
 		width: 80px;

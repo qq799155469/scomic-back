@@ -17,7 +17,8 @@ import comic_list from './components/comic/comic_list.vue'
 import comic_form from './components/comic/comic_form.vue'
 import story_list from './components/story/story_list.vue'
 import story_form from './components/story/story_form.vue'
-import Page6 from './components/nav3/Page6.vue'
+import blog_list from './components/blog/blog_list.vue'
+import blog_form from './components/blog/blog_form.vue'
 import echarts from './components/charts/echarts.vue'
 
 Vue.use(ElementUI)
@@ -35,7 +36,7 @@ const routes = [
     path: '/comic',
     component: Home,
     name: 'comic',
-    iconCls: 'el-icon-message',//图标样式class
+    iconCls: 'el-icon-upload2',//图标样式class
     children: [
       { path: '/comic_list', component: comic_list, name: '漫画列表' },
       { path: '/comic_form', component: comic_form, name: '漫画上传' }
@@ -52,13 +53,13 @@ const routes = [
     ]
   },
   {
-    path: '/',
+    path: '/blog',
     component: Home,
-    name: '',
+    name: 'blog',
     iconCls: 'fa fa-address-card',
-    leaf: true,//只有一个节点
     children: [
-      { path: '/page6', component: Page6, name: '导航三' }
+      { path: '/blog_form', component: blog_form, name: '博客上传' },
+      { path: '/blog_list', component: blog_list, name: '博客列表' }
     ]
   },
   {
